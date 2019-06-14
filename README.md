@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Line Messaging API that tells you the weather on the mountain.
 
-Things you may want to cover:
+## Ruby version
+2.6.3
 
-* Ruby version
+## Rails version
+6.0.0.rc1
 
-* System dependencies
+## System dependencies
+* gem
+  * line-bot-api
+* database
+  * postgres:11.3
 
-* Configuration
+## How to run the development  
+The development environment runs on docker.  
+```
+# docker build and start in background
+docker-compose up --build -d
 
-* Database creation
+# create database and migrate
+docker-compose run web bundle exec rake db:create
+docker-compose run web bundle exec rake db:migrate
 
-* Database initialization
+# start in background
+docker-compose up -d
+```
 
-* How to run the test suite
+## Configuration
+* Database settings  
+Set database connection information in `config/database.yml`.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## References  
+* Line Developers  
+https://developers.line.biz/ja/services/messaging-api/
