@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', 'postgres:11.3', '-p', '5432', '-h', '127.0.0.1', '-d']
+    args: ['run', '-d', 'postgres:11.3', '-p', '5432', '-h', '127.0.0.1']
     env:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres123'
