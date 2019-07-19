@@ -1,12 +1,13 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', 'postgres:11.3', '-p', '5432:5432', '-h', 'db']
+    args: ['run', 'postgres:11.3', '-p', '5432', '-h', 'db']
     env:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres123'
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/line_message_yamanotenki/web:latest', '-f', 'DockerfileForCi', '.']
+    args: ['build', '-t', 'gcr.io/line_message_yamanotenki/web:latest', '-f', 'DockerfileForCI', '.']
     env:
+      - 'RAILS_ENV=test'
       - 'DATABASE_HOST=db'
       - 'DATABASE_PORT=5432'
       - 'DATABASE_USER=postgres'
