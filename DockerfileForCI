@@ -17,8 +17,9 @@ RUN yarn install --check-files
 
 RUN bundle exec rails_best_practices .
 RUN bundle exec brakeman -6 -A -w 1
-RUN bundle exec rails db:create
-RUN bundle exec rails db:migrate
-RUN bundle exec rspec
 
-CMD ["rails", "s", "-d"]
+ENTRYPOINT ['bundle', 'exec', 'rails', 'db:create']
+ENTRYPOINT ['bundle', 'exec', 'rails', 'db:migrate']
+ENTRYPOINT ['bundle', 'exec', 'rspec']
+
+CMD ['bundle', 'exec', 'rails', 's', '-d']
