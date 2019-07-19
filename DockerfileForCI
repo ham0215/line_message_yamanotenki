@@ -21,4 +21,4 @@ RUN bundle exec rails db:create
 RUN bundle exec rails db:migrate
 RUN bundle exec rspec
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "s", "-d"]
