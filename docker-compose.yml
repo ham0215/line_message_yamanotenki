@@ -13,8 +13,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - 3000:3000
-    # pryを使用してデバッグができるよう設定
+      - 3001:3000
     tty: true
     stdin_open: true
   db:

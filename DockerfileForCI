@@ -17,5 +17,6 @@ RUN yarn install --check-files
 
 RUN bundle exec rails_best_practices .
 RUN bundle exec brakeman -6 -A -w 1
+RUN bundle exec rubocop
 
 CMD ['bash', '-c', 'bundle exec rails db:create && bundle exec rails db:migrate && bundle exec rspec &&  bundle exec rails s -d']
