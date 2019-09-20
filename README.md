@@ -6,7 +6,7 @@ This is a Line Messaging API that tells you the weather on the mountain.
 2.6.3
 
 ## Rails version
-6.0.0.rc1
+6.0.0
 
 ## System dependencies
 * gem
@@ -32,6 +32,17 @@ docker-compose up -d
 * Database settings  
 Set database connection information in `config/database.yml`.
 
+## CI
+CI is running on Cloud Build.  
+Executing rspec, brakeman, rails_best_practices.
+
+## Deployment
+This application is running on Heroku.  
+To deploy, login to the Heroku and execute manual deploy.
+
 ## References  
 * Line Developers  
 https://developers.line.biz/ja/services/messaging-api/
+
+* Qiita  
+https://qiita.com/ham0215/items/0cff5eb7d1398f70141d
