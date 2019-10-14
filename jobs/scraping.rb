@@ -15,15 +15,15 @@ re = /code=(\d+)&type=(\d+)/
 urls.each do |url|
   doc = Nokogiri.HTML(open(url))
   doc.css('a').each do |element|
-    if element[:href] =~ /kad.html/
-      m = re.match(element[:href])
-      code = $1
-      type = $2.to_i
-      p code
-      p type
-      p element[:href]
-      p element.children.text
-      Yama.create!(name: element.children.text, code: code, type: type)
-    end
+    next unless element[:href] =~ /kad.html/
+
+    re.match(element[:href])
+    code = $1
+    type = $2.to_i
+    p code
+    p type
+    p element[:href]
+    p element.children.text
+    Yama.create!(name: element.children.text, code: code, type: type)
   end
 end

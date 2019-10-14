@@ -35,10 +35,12 @@ group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'rails_best_practices'
+  gem 'rubocop'
 
   gem 'pry-rails'
 
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
 end
 

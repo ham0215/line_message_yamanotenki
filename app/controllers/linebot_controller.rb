@@ -4,44 +4,47 @@ class LinebotController < ApplicationController
   protect_from_forgery except: [:callback]
 
   def callback
-    body = request.body.read
-
     signature = request.env['HTTP_X_LINE_SIGNATURE']
-    unless client.validate_signature(body, signature)
-      head :bad_request
-      return
-    end
+    return head :bad_request unless client.validate_signature(body, signature)
 
+    reply
+    head :ok
+  end
+
+  private
+
+  def body
+    @body ||= request.body.read
+  end
+
+  def client
+    @client ||= Line::Bot::Client.new do |config|
+      config.channel_secret = ENV['LINE_CHANNEL_SECRET']
+      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+    end
+  end
+
+  def reply
     events = client.parse_events_from(body)
 
-    events.each { |event|
+    events.each do |event|
       case event
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
           next unless event.message['text'] =~ /天気/
 
-          if yama = Yama.find_by_message(event.message['text'])
+          yama = Yama.find_by_message(event.message['text'])
+          if yama
             reply_text = "#{yama.name}の天気\n#{yama.url}"
             message = {
               type: 'text',
-              text: reply_text
+              text: reply_text,
             }
             client.reply_message(event['replyToken'], message)
           end
         end
       end
-    }
-
-    head :ok
-  end
-
-  private
-
-  def client
-    @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     end
   end
 end

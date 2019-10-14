@@ -8,7 +8,7 @@ Yama.all.find_each do |y|
   req = Net::HTTP::Get.new(uri)
   res = http.request(req)
   x = Hash.from_xml(res.body)
-  y.lat = x.dig("result", "coordinate", "lat").to_f
-  y.lng = x.dig("result", "coordinate", "lng").to_f
+  y.lat = x.dig('result', 'coordinate', 'lat').to_f
+  y.lng = x.dig('result', 'coordinate', 'lng').to_f
   y.save!
 end
