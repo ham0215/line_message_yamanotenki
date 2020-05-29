@@ -8,7 +8,7 @@ This is a Line Messaging API that tells you the weather on the mountain.
 
 ## Add friend
 
-<img src="https://qr-official.line.me/sid/M/102bqeod.png">
+![QR](https://qr-official.line.me/sid/M/102bqeod.png)
 
 ## Ruby version
 
