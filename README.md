@@ -4,11 +4,11 @@ This is a Line Messaging API that tells you the weather on the mountain.
 
 ## Usage
 
-![Line](https://github.com/ham0215/line_message_yamanotenki/blob/master/yamanotenki.jpg)
+<img src="https://github.com/ham0215/line_message_yamanotenki/blob/master/yamanotenki.jpg" width=400px>
 
 ## Add friend
 
-![QR](https://qr-official.line.me/sid/M/102bqeod.png)
+<img src="https://qr-official.line.me/sid/M/102bqeod.png" width="200px">
 
 ## Ruby version
 
