@@ -1,0 +1,55 @@
+name: Eager Load
+
+on:
+  pull_request:
+    paths-ignore:
+      - README.md
+      - Dockerfile
+      - docker-compose.yml
+      - 'gcp/**'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - Dockerfile
+      - docker-compose.yml
+      - 'gcp/**'
+
+jobs:
+  reager-load:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAILS_ENV: development
+      DB_HOST: 127.0.0.1
+      DB_PORT: 33060
+      EAGER_LOAD: 1
+    services:
+      db:
+        image: mysql:8.0.27
+        ports:
+          - 33060:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          BIND-ADDRESS: 0.0.0.0
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        volumes:
+          - mysql-confd:/etc/mysql/conf.d
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1.111.0
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+      - name: bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
+      - name: migration
+        run: |
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+      - name: run rspec
+        run: bundle exec rails s -d

@@ -1,0 +1,38 @@
+name: RuboCop
+
+on:
+  pull_request:
+    paths-ignore:
+      - README.md
+      - Dockerfile
+      - docker-compose.yml
+      - 'docs/**'
+      - 'db/**'
+      - 'spec/spec_helper.rb'
+      - 'spec/rails_helper.rb'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - Dockerfile
+      - docker-compose.yml
+      - 'docs/**'
+      - 'db/**'
+      - 'spec/spec_helper.rb'
+      - 'spec/rails_helper.rb'
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1.111.0
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+      - name: run rubocop
+        run: |
+          gem install rubocop rubocop-rspec
+          rubocop
