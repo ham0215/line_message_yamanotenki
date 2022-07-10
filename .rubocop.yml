@@ -3,8 +3,6 @@ AllCops:
     - "vendor/**/*"
     - "db/**/*"
     - "bin/**/*"
-    - "tmp/**/*"
-    - "log/**/*"
     - "config/**/*"
     - "Gemfile"
     - spec/spec_helper.rb
