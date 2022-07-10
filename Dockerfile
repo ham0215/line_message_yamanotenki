@@ -1,4 +1,4 @@
-FROM ruby:3.0.0
+FROM ruby:3.0.4
 
 RUN apt-get update -qq && apt-get install -y postgresql-client vim locales locales-all
 
