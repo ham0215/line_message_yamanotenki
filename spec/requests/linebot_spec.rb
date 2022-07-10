@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LinebotController, type: :request do
   describe 'POST /callback' do
     let(:headers) do
       {
-        'CONTENT_TYPE': 'application/json',
-        'Accept': 'application/json',
-        'HTTP_X_LINE_SIGNATURE': 'hoge',
+        CONTENT_TYPE: 'application/json',
+        Accept: 'application/json',
+        HTTP_X_LINE_SIGNATURE: 'hoge'
       }
     end
     let(:params) do

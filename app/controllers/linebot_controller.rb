@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LinebotController < ApplicationController
   require 'line/bot'
 
@@ -19,12 +21,12 @@ class LinebotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV['LINE_CHANNEL_SECRET']
-      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET')
+      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN')
     end
   end
 
-  def reply
+  def reply # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     events = client.parse_events_from(body)
 
     events.each do |event|
@@ -39,7 +41,7 @@ class LinebotController < ApplicationController
             reply_text = "#{yama.name}の天気\n#{yama.url}"
             message = {
               type: 'text',
-              text: reply_text,
+              text: reply_text
             }
             client.reply_message(event['replyToken'], message)
           end

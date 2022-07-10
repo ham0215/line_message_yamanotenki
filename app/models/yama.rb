@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Yama < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
