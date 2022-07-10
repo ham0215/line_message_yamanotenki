@@ -8,7 +8,7 @@ gem 'pg'
 gem 'puma'
 gem 'jbuilder'
 
-gem 'line-bot-api', '1.12.0'
+gem 'line-bot-api'
 
 group :development, :test do
   gem 'brakeman'
