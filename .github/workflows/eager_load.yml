@@ -23,7 +23,7 @@ jobs:
     env:
       RAILS_ENV: development
       DATABASE_HOST: 127.0.0.1
-      DATABASE_PORT: 33060
+      DATABASE_PORT: 5432
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres123
       EAGER_LOAD: 1
