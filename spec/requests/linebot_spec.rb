@@ -31,7 +31,7 @@ RSpec.describe LinebotController, type: :request do
     end
     let(:yama) { create(:yama) }
 
-    subject(:req) { post callback_path, { headers: headers, params: params } }
+    subject(:req) { post callback_path, headers:, params: }
 
     let(:line_client) { Line::Bot::Client.new }
     before do
