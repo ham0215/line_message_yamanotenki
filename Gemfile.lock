@@ -180,6 +180,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.19.1)
       parser (>= 3.1.1.0)
+    rubocop-rspec (2.12.1)
+      rubocop (~> 1.31)
     ruby-progressbar (1.11.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -216,6 +218,7 @@ DEPENDENCIES
   rails (= 6.0.5)
   rspec-rails
   rubocop
+  rubocop-rspec
 
 RUBY VERSION
    ruby 2.7.6p219

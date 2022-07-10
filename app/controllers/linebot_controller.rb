@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LinebotController < ApplicationController
   require 'line/bot'
 
@@ -24,7 +26,7 @@ class LinebotController < ApplicationController
     end
   end
 
-  def reply
+  def reply # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     events = client.parse_events_from(body)
 
     events.each do |event|

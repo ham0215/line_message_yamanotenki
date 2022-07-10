@@ -34,6 +34,7 @@ group :development, :test do
 
   gem 'brakeman'
   gem 'rubocop'
+  gem 'rubocop-rspec'
 
   gem 'factory_bot_rails'
   gem 'faker'
