@@ -31,6 +31,4 @@ jobs:
       - name: run brakeman
         run: |
           gem install brakeman
-          # Ruby3.1の構文に対応したら --no-exit-on-errorを外す
-          # https://github.com/presidentbeef/brakeman/issues/1664
-          brakeman -6 -A -w 1 --no-exit-on-error
+          brakeman -6 -A -w 1
