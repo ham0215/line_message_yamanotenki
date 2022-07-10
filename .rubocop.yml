@@ -3,15 +3,13 @@ AllCops:
     - "vendor/**/*"
     - "db/**/*"
     - "bin/**/*"
-    - "spec/**/*"
-    - "public/**/*"
     - "tmp/**/*"
     - "log/**/*"
     - "config/**/*"
     - "Gemfile"
-    - "Capfile"
-    - "node_modules/**/*"
-    - "jobs/scraping.rb"
+    - spec/spec_helper.rb
+    - jobs/*
+  NewCops: enable
 
   DisplayCopNames: true
 
@@ -26,12 +24,6 @@ Layout/DotPosition:
 Layout/ExtraSpacing:
   Exclude:
     - "db/migrate/*.rb"
-
-Layout/IndentFirstArrayElement:
-  EnforcedStyle: consistent
-
-Layout/IndentFirstHashElement:
-  EnforcedStyle: consistent
 
 Layout/IndentationConsistency:
   EnforcedStyle: normal
@@ -49,9 +41,6 @@ Lint/AmbiguousBlockAssociation:
     - "spec/**/*_spec.rb"
 
 Lint/EmptyWhen:
-  Enabled: false
-
-Lint/HandleExceptions:
   Enabled: false
 
 Lint/InheritException:
@@ -75,8 +64,6 @@ Metrics/AbcSize:
   Max: 24
 
 Metrics/BlockLength:
-  ExcludedMethods:
-    - "class_methods"
   Exclude:
     - "Rakefile"
     - "**/*.rake"
@@ -114,20 +101,6 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 8
 
-#################### Naming ################################
-
-# has_ から始まるメソッドは許可する
-Naming/PredicateName:
-  NamePrefixBlacklist:
-    - is_
-  NamePrefix:
-    - is_
-    - has_
-    - have_
-
-Naming/UncommunicativeMethodParamName:
-  Enabled: false
-
 #################### Security ##############################
 
 Security/YAMLLoad:
@@ -148,9 +121,6 @@ Style/BlockDelimiters:
   AutoCorrect: false
   Exclude:
     - "spec/**/*_spec.rb"
-
-Style/BracesAroundHashParameters:
-  Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -255,15 +225,6 @@ Style/SymbolArray:
 
 Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex
-
-Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: comma
-
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: comma
-
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: comma
 
 Style/WordArray:
   Enabled: false
