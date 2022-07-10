@@ -24,8 +24,8 @@ jobs:
     timeout-minutes: 10
     env:
       RAILS_ENV: test
-      DB_HOST: 127.0.0.1
-      DB_PORT: 33060
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: 33060
     services:
       db:
         image: mysql:8.0.27
