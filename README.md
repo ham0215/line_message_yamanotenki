@@ -9,11 +9,11 @@ This is a Line Messaging API that tells you the weather on the mountain.
 
 ## Usage
 
-<img src="https://github.com/ham0215/line_message_yamanotenki/blob/master/yamanotenki.jpg" width=400px>
+<img src="https://github.com/ham0215/line_message_yamanotenki/blob/main/yamanotenki.jpg" width=400px>
 
 ## Add friend
 
-<img src="https://github.com/ham0215/line_message_yamanotenki/blob/master/qr.png" width="200px">
+<img src="https://github.com/ham0215/line_message_yamanotenki/blob/main/qr.png" width="200px">
 
 ## System dependencies
 
