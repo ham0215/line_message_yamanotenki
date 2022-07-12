@@ -1,5 +1,10 @@
 # README
 
+[![Brakeman](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/brakeman.yml/badge.svg)](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/brakeman.yml)
+[![Eager Load](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/eager_load.yml/badge.svg)](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/eager_load.yml)
+[![RSpec](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/rspec.yml/badge.svg)](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/rspec.yml)
+[![RuboCop](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/rubocop.yml/badge.svg)](https://github.com/ham0215/line_message_yamanotenki/actions/workflows/rubocop.yml)
+
 This is a Line Messaging API that tells you the weather on the mountain.
 
 ## Usage
