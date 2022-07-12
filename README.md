@@ -15,20 +15,18 @@ This is a Line Messaging API that tells you the weather on the mountain.
 
 <img src="https://github.com/ham0215/line_message_yamanotenki/blob/master/qr.png" width="200px">
 
-## Ruby version
-
-2.6.3
-
-## Rails version
-
-6.0.0
-
 ## System dependencies
 
 - gem
   - line-bot-api
 - database
-  - postgres:11.3
+  - postgres
+  
+## dependency update
+
+Use renovate to automate software project dependency updates.
+
+https://www.mend.io/free-developer-tools/renovate/
 
 ## How to run the development
 
@@ -59,7 +57,7 @@ Executing rspec, brakeman, rails_best_practices.
 ## Deployment
 
 This application is running on Heroku.  
-To deploy, login to the Heroku and execute manual deploy.
+Deploy when merged into the main branch.
 
 ## References
 
