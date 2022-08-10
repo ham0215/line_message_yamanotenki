@@ -29,7 +29,7 @@ jobs:
       EAGER_LOAD: 1
     services:
       db:
-        image: postgres:11.3
+        image: postgres:11.16
         ports:
           - 5432:5432
         env:
