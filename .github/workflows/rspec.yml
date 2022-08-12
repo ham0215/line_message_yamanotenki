@@ -30,7 +30,7 @@ jobs:
       DATABASE_PASSWORD: postgres123
     services:
       db:
-        image: postgres:11.16
+        image: postgres:14.5
         ports:
           - 5432:5432
         env:
