@@ -131,7 +131,6 @@ GEM
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
-    pg (1.4.1)
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -227,7 +226,6 @@ DEPENDENCIES
   jbuilder
   line-bot-api
   listen
-  pg
   puma
   rails
   rspec-rails

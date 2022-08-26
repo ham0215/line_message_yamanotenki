@@ -17,24 +17,12 @@ on:
       - 'gcp/**'
 
 jobs:
-  reager-load:
+  eager-load:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       RAILS_ENV: development
-      DATABASE_HOST: 127.0.0.1
-      DATABASE_PORT: 5432
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres123
       EAGER_LOAD: 1
-    services:
-      db:
-        image: postgres:11.16
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres123
     steps:
       - uses: actions/checkout@v3
       - name: Set up Ruby
@@ -46,9 +34,5 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3 --path vendor/bundle
-      - name: migration
-        run: |
-          bundle exec rails db:create
-          bundle exec rails db:schema:load
       - name: run rspec
         run: bundle exec rails s -d
