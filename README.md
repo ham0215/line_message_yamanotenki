@@ -53,8 +53,8 @@ rake scraping:start
 
 ## References
 
-- Line Developers
-  https://developers.line.biz/ja/services/messaging-api/
+### Line Developers
+https://developers.line.biz/ja/services/messaging-api/
 
-- Qiita
-  https://qiita.com/ham0215/items/0cff5eb7d1398f70141d
+### Qiita
+https://qiita.com/ham0215/items/0cff5eb7d1398f70141d
