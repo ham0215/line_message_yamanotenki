@@ -21,7 +21,7 @@ This is a Line Messaging API that tells you the weather on the mountain.
   - line-bot-api
 - database
   - postgres
-  
+
 ## dependency update
 
 Use renovate to automate software project dependency updates.
@@ -36,33 +36,25 @@ The development environment runs on docker.
 # docker build and start in background
 docker-compose up --build -d
 
-# create database and migrate
-docker-compose run web bundle exec rake db:create
-docker-compose run web bundle exec rake db:migrate
-
 # start in background
 docker-compose up -d
 ```
-
-## Configuration
-
-- Database settings  
-  Set database connection information in `config/database.yml`.
-
-## CI
-
-CI is running on Cloud Build.  
-Executing rspec, brakeman, rails_best_practices.
-
 ## Deployment
 
-This application is running on Heroku.  
+This application is running on Cloud Functions.
 Deploy when merged into the main branch.
+
+
+## Scraping
+
+```
+rake scraping:start
+```
 
 ## References
 
-- Line Developers  
-  https://developers.line.biz/ja/services/messaging-api/
+### Line Developers
+https://developers.line.biz/ja/services/messaging-api/
 
-- Qiita  
-  https://qiita.com/ham0215/items/0cff5eb7d1398f70141d
+### Qiita
+https://qiita.com/ham0215/items/0cff5eb7d1398f70141d

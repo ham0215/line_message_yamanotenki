@@ -10,6 +10,7 @@ AllCops:
     - jobs/*
     - Rakefile
     - config.ru
+    - .irbrc
   NewCops: enable
 
   DisplayCopNames: true
