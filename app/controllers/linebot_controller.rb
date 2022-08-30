@@ -21,8 +21,8 @@ class LinebotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET')
-      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN')
+      config.channel_secret = Rails.application.credentials.line_channel_secret
+      config.channel_token = Rails.application.credentials.line_channel_token
     end
   end
 

@@ -1,4 +1,6 @@
  steps:
+ - name: 'gcr.io/cloud-builders/gsutil'
+   args: ['cp', 'gs://master_keys/line-message-yamanotenki/master.key', './config/']
  # Build the container image
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build', '-t', 'gcr.io/$PROJECT_ID/line-message-yamanotenki:$COMMIT_SHA', '.']
@@ -17,7 +19,7 @@
    - '--region'
    - 'asia-northeast1'
    - '--set-env-vars'
-   - 'RAILS_ENV=production,RAILS_LOG_TO_STDOUT=1,LINE_CHANNEL_TOKEN=$_LINE_CHANNEL_TOKEN,LINE_CHANNEL_SECRET=$_LINE_CHANNEL_SECRET'
+   - 'RAILS_ENV=production,RAILS_LOG_TO_STDOUT=1'
    - '--allow-unauthenticated'
 
  images:
