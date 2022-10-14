@@ -29,7 +29,7 @@ RSpec.describe LinebotController, type: :request do
         type: 'text'
       }
     end
-    let(:yama) { Yama.find_by_message('高尾山') }
+    let(:yama) { Yama.find_by_message('古見岳') }
 
     subject(:req) { post callback_path, headers:, params: }
 
