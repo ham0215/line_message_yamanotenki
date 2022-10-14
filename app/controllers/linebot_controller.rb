@@ -34,11 +34,14 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          Rails.logger.info(event.message['text'])
           next unless event.message['text'] =~ /天気/
 
           yama = Yama.find_by_message(event.message['text'])
+          Rails.logger.info(yama)
           if yama
             reply_text = "#{yama.name}の天気\n#{yama.url}"
+            Rails.logger.info(reply_text)
             message = {
               type: 'text',
               text: reply_text
