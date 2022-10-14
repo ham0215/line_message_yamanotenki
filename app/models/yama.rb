@@ -5,13 +5,22 @@ class Yama
 
   class << self
     def find_by_message(message)
-      yama = yamas.find { message =~ /#{_1['name']}/ }
-      yama ? new(yama) : nil
+      yamas = yama_rows.select { message =~ /#{_1['name']}/ }
+      return if yamas.empty?
+
+      yama = if yamas.size == 1
+               yamas.first
+             else
+               # 一番文字数が多いものを返す
+               yamas.max { |a, b| a['name'].length <=> b['name'].length }
+             end
+
+      new(yama)
     end
 
     private
 
-    def yamas
+    def yama_rows
       json['yamas']
     end
 
