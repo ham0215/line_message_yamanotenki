@@ -7,6 +7,8 @@ gem 'jbuilder'
 
 gem 'line-bot-api'
 
+gem 'faraday'
+
 group :development, :test do
   gem 'brakeman'
   gem 'rubocop'

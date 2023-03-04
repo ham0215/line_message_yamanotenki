@@ -35,21 +35,50 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           Rails.logger.info(event.message['text'])
-          next unless event.message['text'] =~ /天気/
+          if event.message['text'] =~ /天気/
+            yama = Yama.find_by_message(event.message['text'])
+            Rails.logger.info(yama)
+            if yama
+              reply_text = "#{yama.name}の天気\n#{yama.url}"
+              Rails.logger.info(reply_text)
+              message = {
+                type: 'text',
+                text: reply_text
+              }
+              client.reply_message(event['replyToken'], message)
+            end
+          elsif event.message['text'] =~ /登山部さん/
+            Rails.logger.info(event.message['text'])
 
-          yama = Yama.find_by_message(event.message['text'])
-          Rails.logger.info(yama)
-          if yama
-            reply_text = "#{yama.name}の天気\n#{yama.url}"
-            Rails.logger.info(reply_text)
-            message = {
-              type: 'text',
-              text: reply_text
-            }
-            client.reply_message(event['replyToken'], message)
+            reply_text = chat_gpt(event.message['text'])
+
+            if reply_text
+              Rails.logger.info(reply_text)
+              message = {
+                type: 'text',
+                text: reply_text
+              }
+              client.reply_message(event['replyToken'], message)
+            end
           end
         end
       end
     end
+  end
+
+  def chat_gpt(msg)
+    conn = Faraday.new(
+      url: 'https://api.openai.com',
+      headers: {'Content-Type' => 'application/json', 'Authorization' => "Bearer #{ENV['OPENAI_API_KEY']}"}
+    )
+
+    response = conn.post('/v1/chat/completions') do |req|
+      req.body = { model: 'gpt-3.5-turbo', messages: [{ role: "user", content: msg }] }.to_json
+    end
+
+    JSON.parse(response.body).dig('choices', 0, 'message', 'content')
+  rescue => e
+    Rails.logger.error(e.inspect)
+    nil
   end
 end
