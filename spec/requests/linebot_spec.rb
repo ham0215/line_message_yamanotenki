@@ -2,8 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe LinebotController, type: :request do
+RSpec.describe LinebotController do
   describe 'POST /callback' do
+    subject(:request) { post callback_path, headers:, params: }
+
     let(:headers) do
       {
         CONTENT_TYPE: 'application/json',
@@ -11,6 +13,7 @@ RSpec.describe LinebotController, type: :request do
         HTTP_X_LINE_SIGNATURE: 'hoge'
       }
     end
+    let(:line_client) { Line::Bot::Client.new }
     let(:params) do
       {
         events: [
@@ -23,10 +26,6 @@ RSpec.describe LinebotController, type: :request do
       }.to_json
     end
     let(:reply_token) { 'replyTokenXXX' }
-
-    subject(:request) { post callback_path, headers:, params: }
-
-    let(:line_client) { Line::Bot::Client.new }
 
     before do
       allow(Line::Bot::Client).to receive(:new).and_return(line_client)
@@ -45,7 +44,7 @@ RSpec.describe LinebotController, type: :request do
 
       it 'successed' do
         request
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(line_client).to have_received(:reply_message).with(reply_token, reply_message).once
       end
     end
@@ -61,7 +60,7 @@ RSpec.describe LinebotController, type: :request do
 
       it 'successed' do
         request
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(line_client).to have_received(:reply_message).with(reply_token, reply_message).once
       end
     end
