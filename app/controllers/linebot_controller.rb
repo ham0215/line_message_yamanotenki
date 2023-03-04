@@ -35,50 +35,41 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           Rails.logger.info(event.message['text'])
-          if event.message['text'] =~ /天気/
-            yama = Yama.find_by_message(event.message['text'])
-            Rails.logger.info(yama)
-            if yama
-              reply_text = "#{yama.name}の天気\n#{yama.url}"
-              Rails.logger.info(reply_text)
-              message = {
-                type: 'text',
-                text: reply_text
-              }
-              client.reply_message(event['replyToken'], message)
-            end
-          elsif event.message['text'] =~ /登山部さん/
-            Rails.logger.info(event.message['text'])
-
-            reply_text = chat_gpt(event.message['text'])
-
-            if reply_text
-              Rails.logger.info(reply_text)
-              message = {
-                type: 'text',
-                text: reply_text
-              }
-              client.reply_message(event['replyToken'], message)
-            end
+          case event.message['text']
+          when /天気/
+            tenki(event.message['text'])
+          when /登山部さん/
+            chat(event.message['text'])
           end
         end
       end
     end
   end
 
-  def chat_gpt(msg)
-    conn = Faraday.new(
-      url: 'https://api.openai.com',
-      headers: {'Content-Type' => 'application/json', 'Authorization' => "Bearer #{ENV['OPENAI_API_KEY']}"}
-    )
+  def tenki(msg)
+    yama = Yama.find_by_message(msg)
+    Rails.logger.info(yama)
 
-    response = conn.post('/v1/chat/completions') do |req|
-      req.body = { model: 'gpt-3.5-turbo', messages: [{ role: "user", content: msg }] }.to_json
-    end
+    reply_text = "#{yama.name}の天気\n#{yama.url}" if yama
+    reply_message(generate_message(reply_text)) if reply_text
+  end
 
-    JSON.parse(response.body).dig('choices', 0, 'message', 'content')
-  rescue => e
-    Rails.logger.error(e.inspect)
-    nil
+  def chat(msg)
+    conn = ChatGpt.connect
+    reply_text = conn.request(msg)
+
+    reply_message(generate_message(reply_text)) if reply_text
+  end
+
+  def generate_message(reply_text)
+    Rails.logger.info(reply_text)
+    {
+      type: 'text',
+      text: reply_text
+    }
+  end
+
+  def reply_message(msg)
+    client.reply_message(event['replyToken'], msg)
   end
 end
