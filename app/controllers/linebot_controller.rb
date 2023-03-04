@@ -36,12 +36,13 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           Rails.logger.info(event.message['text'])
 
-          reply_text = case event.message['text']
-                       when /天気/
-                         tenki(event.message['text'])
-                       when /登山部さん/
-                         chat(event.message['text'])
-                       end
+          if event.message['text'] =~ /天気/
+            reply_text = tenki(event.message['text'])
+          end
+
+          if !reply_text && event.message['text'] =~ /登山部さん/
+            reply_text = chat(event.message['text'])
+          end
 
           reply_message(event['replyToken'], generate_message(reply_text)) if reply_text
         end
