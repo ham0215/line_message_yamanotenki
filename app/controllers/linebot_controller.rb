@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
   end
 
   def tenki(msg)
-    yama = Yama.find_by_message(msg)
+    yama = Yama.find(msg)
     Rails.logger.info(yama)
 
     "#{yama.name}の天気\n#{yama.url}" if yama
@@ -64,7 +64,7 @@ class LinebotController < ApplicationController
     Rails.logger.info(reply_text)
     {
       type: 'text',
-      text: reply_text
+      text: reply_text.strip
     }
   end
 

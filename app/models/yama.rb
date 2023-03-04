@@ -4,7 +4,7 @@ class Yama
   attr_reader :code, :type, :name
 
   class << self
-    def find_by_message(message)
+    def find(message)
       yamas = yama_rows.select { message =~ /#{_1['name']}/ }
       return if yamas.empty?
 
@@ -27,7 +27,7 @@ class Yama
     def json
       return @json if instance_variable_defined? :@json
 
-      @json = JSON.parse(File.read(Rails.root.join('app', 'models', 'yama.json')))
+      @json = JSON.parse(Rails.root.join('app/models/yama.json').read)
     end
   end
 
