@@ -64,7 +64,7 @@ class LinebotController < ApplicationController
     Rails.logger.info(reply_text)
     {
       type: 'text',
-      text: reply_text
+      text: reply_text.strip
     }
   end
 
