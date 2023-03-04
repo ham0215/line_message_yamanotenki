@@ -9,5 +9,6 @@ services:
       - 3001:3000
     environment:
       EDITOR: vim
+      OPENAI_API_KEY: hoge
     tty: true
     stdin_open: true

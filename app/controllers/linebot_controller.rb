@@ -35,21 +35,41 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           Rails.logger.info(event.message['text'])
-          next unless event.message['text'] =~ /天気/
 
-          yama = Yama.find_by_message(event.message['text'])
-          Rails.logger.info(yama)
-          if yama
-            reply_text = "#{yama.name}の天気\n#{yama.url}"
-            Rails.logger.info(reply_text)
-            message = {
-              type: 'text',
-              text: reply_text
-            }
-            client.reply_message(event['replyToken'], message)
-          end
+          reply_text = case event.message['text']
+                       when /天気/
+                         tenki(event.message['text'])
+                       when /登山部さん/
+                         chat(event.message['text'])
+                       end
+
+          reply_message(event['replyToken'], generate_message(reply_text)) if reply_text
         end
       end
     end
+  end
+
+  def tenki(msg)
+    yama = Yama.find_by_message(msg)
+    Rails.logger.info(yama)
+
+    "#{yama.name}の天気\n#{yama.url}" if yama
+  end
+
+  def chat(msg)
+    conn = ChatGpt.connect
+    conn.request(msg)
+  end
+
+  def generate_message(reply_text)
+    Rails.logger.info(reply_text)
+    {
+      type: 'text',
+      text: reply_text
+    }
+  end
+
+  def reply_message(token, msg)
+    client.reply_message(token, msg)
   end
 end
