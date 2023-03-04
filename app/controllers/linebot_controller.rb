@@ -57,8 +57,7 @@ class LinebotController < ApplicationController
   end
 
   def chat(msg)
-    conn = ChatGpt.connect
-    conn.request(msg)
+    ChatGpt.new.request(msg)
   end
 
   def generate_message(reply_text)
