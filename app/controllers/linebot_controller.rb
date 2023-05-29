@@ -35,10 +35,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           Rails.logger.info(event.message['text'])
-
-          if event.message['text'] =~ /天気/
-            reply_text = tenki(event.message['text'])
-          end
+          reply_text = tenki(event.message['text']) if event.message['text'] =~ /天気/
 
           # ChatGpt停止
           # if !reply_text && event.message['text'] =~ /登山部さん/

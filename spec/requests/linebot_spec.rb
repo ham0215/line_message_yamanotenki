@@ -65,7 +65,7 @@ RSpec.describe LinebotController do
       end
     end
 
-    context 'when 登山部さん match' do
+    context 'when 登山部さん match', skip: 'Disabled ChatGPT' do
       let(:text) { '登山部さん調子はどうですか？' }
       let(:reply_message) do
         {

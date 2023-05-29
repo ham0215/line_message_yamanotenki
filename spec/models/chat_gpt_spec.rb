@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ChatGpt, type: :model do
+RSpec.describe ChatGpt do
   describe '#request' do
     let(:connection) { class_double(Faraday) }
     let(:body) do
@@ -23,7 +23,7 @@ RSpec.describe ChatGpt, type: :model do
     end
 
     it 'return expected value' do
-      expect(ChatGpt.new.request('hoge')).to eq '私は絶好調です'
+      expect(described_class.new.request('hoge')).to eq '私は絶好調です'
     end
   end
 end

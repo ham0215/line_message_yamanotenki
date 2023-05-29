@@ -11,9 +11,10 @@ gem 'faraday'
 
 group :development, :test do
   gem 'brakeman'
-  gem 'rubocop'
-  gem 'rubocop-rspec'
-  gem 'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rails', require: false
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
