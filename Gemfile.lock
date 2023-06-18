@@ -91,7 +91,7 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
     irb (1.6.4)
@@ -116,7 +116,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     net-imap (0.3.4)
       date
       net-protocol
@@ -136,7 +136,7 @@ GEM
       racc
     puma (6.3.0)
       nio4r (~> 2.0)
-    racc (1.6.2)
+    racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -209,7 +209,7 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.23.1)
       rubocop (~> 1.33)
-    rubocop-rails (2.19.1)
+    rubocop-rails (2.20.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
