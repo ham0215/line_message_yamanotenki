@@ -68,7 +68,8 @@ GEM
       tzinfo (~> 2.0)
     ast (2.4.2)
     base64 (0.1.1)
-    brakeman (6.0.1)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
